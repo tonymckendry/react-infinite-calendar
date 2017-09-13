@@ -1,15 +1,17 @@
 .root {
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 0;
   right: 0;
+  left: 0;
+  width: '100%';
+
   display: flex;
   align-items: center;
   justify-content: center;
   height: 32px;
   padding: 6px;
   box-sizing: border-box;
-  transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, 100%, 0);
 
   font-weight: 500;
   line-height: 0;

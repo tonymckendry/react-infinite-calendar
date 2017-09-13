@@ -28,6 +28,7 @@ export default class MonthList extends Component {
         minDate: PropTypes.instanceOf(Date),
         months: PropTypes.arrayOf(PropTypes.object),
         onDaySelect: PropTypes.func,
+        scrollToDateMaster: PropTypes.func,
         onScroll: PropTypes.func,
         overscanMonthCount: PropTypes.number,
         rowHeight: PropTypes.number,
@@ -82,7 +83,8 @@ export default class MonthList extends Component {
         const { min, rowHeight, locale: { weekStartsOn }, height } = this.props;
         const weeks = getWeek(startOfMonth(min), parse(date), weekStartsOn);
 
-        return weeks * rowHeight - (height - rowHeight / 2) / 7;
+        // return weeks * rowHeight - (height - rowHeight / 2) / 2; 
+        return weeks * rowHeight - 60; //used to be /2
     }
 
     scrollToDate = (date, offset = 0, ...rest) => {
@@ -131,6 +133,7 @@ export default class MonthList extends Component {
             showOverlay,
             theme,
             today,
+            scrollToDateMaster
     } = this.props;
 
         let { month, year } = months[index];
@@ -151,6 +154,7 @@ export default class MonthList extends Component {
                 rowHeight={rowHeight}
                 isScrolling={false}
                 showOverlay={showOverlay}
+                scrollToDateMaster={scrollToDateMaster}
                 today={today}
                 theme={theme}
                 style={style}

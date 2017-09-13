@@ -1,14 +1,15 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import classNames from 'classnames';
 import parse from 'date-fns/parse';
 import styles from './Day.scss';
 
 export default class Day extends PureComponent {
   handleClick = () => {
-    let {date, isDisabled, onClick} = this.props;
+    let { date, isDisabled, onClick, scrollToDateMaster } = this.props;
 
     if (!isDisabled && typeof onClick === 'function') {
       onClick(parse(date));
+      scrollToDateMaster(date, 2, true)
     }
   };
 
@@ -17,10 +18,11 @@ export default class Day extends PureComponent {
       day,
       date,
       isToday,
-      locale: {todayLabel},
+      locale: { todayLabel },
       monthShort,
-      theme: {textColor},
+      theme: { textColor },
       selectionStyle,
+      scrollToDateMaster
     } = this.props;
 
     return (
@@ -40,7 +42,7 @@ export default class Day extends PureComponent {
       </div>
     );
   }
-  
+
   render() {
     const {
       className,
@@ -53,7 +55,7 @@ export default class Day extends PureComponent {
       isToday,
       isSelected,
       monthShort,
-      theme: {selectionColor, todayColor},
+      theme: { selectionColor, todayColor },
       year,
     } = this.props;
     let color;
@@ -68,7 +70,7 @@ export default class Day extends PureComponent {
 
     return (
       <li
-        style={color ? {color} : null}
+        style={color ? { color } : null}
         className={classNames(styles.root, {
           [styles.today]: isToday,
           [styles.highlighted]: isHighlighted,
