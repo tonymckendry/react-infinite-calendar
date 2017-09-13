@@ -285,7 +285,6 @@ export default class Calendar extends Component {
       layout,
       overscanMonthCount,
       shouldHeaderAnimate,
-      showHeader,
       showMonthsForYears,
       showOverlay,
       showTodayHelper,
@@ -296,6 +295,7 @@ export default class Calendar extends Component {
     const locale = this.getLocale();
     const theme = this.getTheme();
     const today = this.today = startOfDay(new Date());
+    const showHeader = false
 
     return (
       <div
